@@ -187,6 +187,24 @@ public class listagemVIEW extends javax.swing.JFrame {
             }
         });
     }
+    private void listarProdutosNaTabela() {
+    ProdutosDAO produtosdao = new ProdutosDAO();
+    ArrayList<ProdutosDTO> lista = produtosdao.listarProdutos();  // Chama o método que retorna a lista de produtos
+
+    // Supondo que você tenha uma JTable chamada 'tabelaProdutos'
+    DefaultTableModel modelo = (DefaultTableModel) listaProdutos.getModel();
+    modelo.setRowCount(0);  // Limpa a tabela antes de adicionar os produtos
+
+    // Adiciona os produtos à tabela
+    for (ProdutosDTO produto : lista) {
+        modelo.addRow(new Object[]{
+            produto.getId(),
+            produto.getNome(),
+            produto.getValor(),
+            produto.getStatus()
+        });
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVendas;
